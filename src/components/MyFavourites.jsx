@@ -1,8 +1,9 @@
 import { Container, Row, Col, ListGroup, Button } from "react-bootstrap";
 import { useSelector, useDispatch } from "react-redux";
+import { removeFromFavourites } from "../redux/actions";
 
 const MyFavourites = () => {
-  const favourites = useSelector((state) => state.main.favourites);
+  const favourites = useSelector((state) => state.reducerFavourites.favourites);
   const dispatch = useDispatch();
 
   return (
@@ -22,12 +23,7 @@ const MyFavourites = () => {
                   {company}
                   <Button
                     className="btn btn-sm btn-danger"
-                    onClick={() =>
-                      dispatch({
-                        type: "REMOVE_FROM_FAVOURITES",
-                        payload: company,
-                      })
-                    }
+                    onClick={() => dispatch(removeFromFavourites(company))}
                   >
                     remove
                   </Button>
